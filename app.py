@@ -16,7 +16,7 @@ class app(customtkinter.CTk):
         self.eval('tk::PlaceWindow . center')
         self.resizable(False,False)
         
-        self.grid_rowconfigure((0,1), weight=1)
+        self.grid_rowconfigure((0, 1), weight=1)
         self.grid_columnconfigure(0, weight=1)
         
         self.tabview.tab("Encryption").grid_rowconfigure((0, 1) ,weight = 1)

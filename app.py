@@ -12,6 +12,8 @@ class app(customtkinter.CTk):
         self.tabview.add("Keygen")  # add tab at the end
         self.tabview.set("Encryption")  # set currently visible tab
         self.geometry("450x350")
+        self.eval('tk::PlaceWindow . center')
+        self.resizable(False,False)
         
         self.grid_rowconfigure((0,1), weight=1)
         self.grid_columnconfigure(0, weight=1)

@@ -22,7 +22,7 @@ class app(customtkinter.CTk):
         self.tabview.tab("Decryption").grid_rowconfigure((0, 1) ,weight = 1)
         self.tabview.tab("Decryption").grid_columnconfigure(0 ,weight = 1)
         
-        self.tabview.tab("Keygen").grid_rowconfigure(0 ,weight = 1)
+        self.tabview.tab("Keygen").grid_rowconfigure((0,1) ,weight = 1)
         self.tabview.tab("Keygen").grid_columnconfigure(0 ,weight = 1)
         
         #Elements declaration
@@ -37,23 +37,28 @@ class app(customtkinter.CTk):
             self.tabview.tab("Decryption"),placeholder_text="Key") # entry input field for encryption key in decryption tab
         
         self.keyGenOut = customtkinter.CTkEntry(
-            self.tabview.tab("Keygen"),state="disabled") # output field for encryption key in keygen
+            self.tabview.tab("Keygen"), state="readonly") # output field for encryption key in keygen
+        self.keyLabel = customtkinter.CTkLabel(
+            self.tabview.tab("Keygen"), text = "Your generated key")
         
         self.goButton = customtkinter.CTkButton(
             self, text = "Encrypt", command="", state="disabled") # button starting encrypt functions
         
         #Elements placement
-        self.tabview.grid(row = 0, column = 0)
+        #Main window
+        self.tabview.grid(row = 0, column = 0, padx = 20)
         self.tabview.grid_configure(sticky = "nsew")
         self.goButton.grid(row = 1, column = 0)
         
-        self.wordEntryEc.grid(row = 0, column = 0)
-        self.keyEntryEc.grid(row = 1, column = 0)
+        #Individual tabs
+        self.wordEntryEc.grid(row = 0, column = 0, sticky = tkinter.S, pady = 10)
+        self.keyEntryEc.grid(row = 1, column = 0, sticky = tkinter.N, pady = 10)
         
-        self.wordEntryDec.grid(row = 0, column = 0)
-        self.keyEntryDec.grid(row = 1, column = 0)
+        self.wordEntryDec.grid(row = 0, column = 0, sticky = tkinter.S, pady = 10)
+        self.keyEntryDec.grid(row = 1, column = 0, sticky = tkinter.N, pady = 10)
         
-        self.keyGenOut.grid(row = 0, column = 0)
+        self.keyLabel.grid(row = 0, column = 0, sticky = tkinter.S, pady = 5)
+        self.keyGenOut.grid(row = 1, column = 0, sticky = tkinter.N)
         
     #Function for dynamic UI
         

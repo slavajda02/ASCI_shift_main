@@ -39,10 +39,9 @@ class app(customtkinter.CTk):
             self.tabview.tab("Decryption"),placeholder_text="Key") # entry input field for encryption key in decryption tab
         
         self.keyGenOut = customtkinter.CTkEntry(
-            self.tabview.tab("Keygen"), state="readonly") # output field for encryption key in keygen
+            self.tabview.tab("Keygen"), state="normal") # output field for encryption key in keygen
         self.keyLabel = customtkinter.CTkLabel(
             self.tabview.tab("Keygen"), text = "Your generated key")
-        
         self.goButton = customtkinter.CTkButton(
             self, text = "Encrypt", command="", state="disabled") # button starting encrypt functions
         

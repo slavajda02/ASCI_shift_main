@@ -1,5 +1,6 @@
 import customtkinter
 import tkinter
+from core import *
 
 class app(customtkinter.CTk):
     def __init__(self):
@@ -78,8 +79,7 @@ class app(customtkinter.CTk):
         elif currTab == "Keygen":
             self.goButton.configure(text = "Generate") 
             self.goButton.configure(state = "enabled")           
-        
-        
+            
+            
 App = app()
 App.mainloop()
-        

@@ -1,6 +1,6 @@
 import customtkinter
 import tkinter
-from core import *
+#from core import *
 
 class app(customtkinter.CTk):
     def __init__(self):
@@ -44,7 +44,7 @@ class app(customtkinter.CTk):
         self.keyLabel = customtkinter.CTkLabel(
             self.tabview.tab("Keygen"), text = "Your generated key")
         self.goButton = customtkinter.CTkButton(
-            self, text = "Encrypt", command="", state="disabled") # button starting encrypt functions
+            self, text = "Encrypt", command=self.buttonPress, state="disabled") # button starting encrypt functions
         
         #Elements placement
         #Main window
@@ -80,6 +80,8 @@ class app(customtkinter.CTk):
             self.goButton.configure(text = "Generate") 
             self.goButton.configure(state = "enabled")           
             
-            
+    #def buttonPress(self):
+        
+
 App = app()
 App.mainloop()

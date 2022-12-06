@@ -1,6 +1,6 @@
 import customtkinter
 import tkinter
-#from core import *
+from core import *
 
 class app(customtkinter.CTk):
     def __init__(self):
@@ -46,6 +46,12 @@ class app(customtkinter.CTk):
         self.goButton = customtkinter.CTkButton(
             self, text = "Encrypt", command=self.buttonPress, state="disabled") # button starting encrypt functions
         
+        #Binding entry field to buttonStateChange
+        self.wordEntryEc.bind("<KeyRelease>", self.buttonStateChange)
+        self.wordEntryDec.bind("<KeyRelease>", self.buttonStateChange)      
+        self.keyEntryEc.bind("<KeyRelease>", self.buttonStateChange)
+        self.keyEntryDec.bind("<KeyRelease>", self.buttonStateChange)
+        
         #Elements placement
         #Main window
         self.tabview.grid(row = 0, column = 0, padx = 20)
@@ -80,7 +86,26 @@ class app(customtkinter.CTk):
             self.goButton.configure(text = "Generate") 
             self.goButton.configure(state = "enabled")           
             
-    #def buttonPress(self):
+    #Chaning buttonState according to entry
+    def buttonStateChange(self, field):
+        currTab = self.tabview.get()
+        
+        if currTab == "Encryption":   
+            if self.wordEntryEc.get() and self.keyEntryEc.get():
+                self.goButton.configure(state = "enabled")
+            else:
+                self.goButton.configure(state = "disabled")
+        
+        if currTab == "Decryption":
+            if self.wordEntryDec.get() and self.keyEntryDec.get():
+                self.goButton.configure(state = "enabled")
+            else:
+                self.goButton.configure(state = "disabled")
+        
+    def buttonPress(self):
+        currTab = self.tabview.get()
+        if currTab == "Encryption":
+            encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())
         
 
 App = app()

@@ -1,15 +1,28 @@
 def encrypt(string, key):
     key = keyConvert(key)
-    asciiL = list(string.encode('ascii'))
+    asciiL = []
+    # convert to ascii list
+    for x in string:
+        asciiL.append(ord(x))
+    
+    # shift ascii value of asciiVar "asciiL"
     i = 0
     for x in range(len(asciiL)):
-        if i ==len(asciiL):
+        if i == len(asciiL) or i == len(key):
             i = 0
         asciiL[x] += key[i]
-        string = asciiL.join(chr(asciiL))    
-        print(string)
+        if asciiL[x] > 126:
+            asciiL[x] = asciiL[x] - 126 + 31
+        i += 1
+        
+    # Converting ascii to string        
+    string = []
+    for x in asciiL:
+        string.append(chr(x))
+    string = "".join(string)    
+    return string
     
-def kecrypt(string, key):
+def decrypt(string, key):
     next
     
 def keyGenerator():

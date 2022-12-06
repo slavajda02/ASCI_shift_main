@@ -105,7 +105,7 @@ class app(customtkinter.CTk):
     def buttonPress(self):
         currTab = self.tabview.get()
         if currTab == "Encryption":
-            encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())
+            self.wordEntryEc.configure(textvariable = tkinter.StringVar(value = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())))
         
 
 App = app()

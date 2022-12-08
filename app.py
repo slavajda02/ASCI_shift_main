@@ -107,6 +107,15 @@ class app(customtkinter.CTk):
         if currTab == "Encryption":
             self.wordEntryEc.configure(textvariable = tkinter.StringVar(value = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())))
         
+        currTab = self.tabview.get()
+        if currTab == "Decryption":
+            self.wordEntryDec.configure(textvariable = tkinter.StringVar(value = decrypt(self.wordEntryDec.get(), self.keyEntryDec.get())))
+        
+        if currTab == "Keygen":
+            key = keyGenerator()
+            self.keyGenOut.configure(textvariable = tkinter.StringVar(value= key))
+            self.keyEntryDec.configure(textvariable = tkinter.StringVar(value = key))
+            self.keyEntryEc.configure(textvariable = tkinter.StringVar(value = key))
 
 App = app()
 App.mainloop()

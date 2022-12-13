@@ -30,18 +30,18 @@ class app(customtkinter.CTk):
         
         #Elements declaration
         self.labelWordsEntryEc = customtkinter.CTkLabel(
-            self.tabview.tab("Encryption"), text = "Words to encrypt", font=("Arial", 14))
+            self.tabview.tab("Encryption"), text = "Words to encrypt", font=("", 13))
         self.labelKeyEntryEc = customtkinter.CTkLabel(
-            self.tabview.tab("Encryption"), text = "Key", font=("Arial", 14))
+            self.tabview.tab("Encryption"), text = "Key", font=("", 13))
         self.wordEntryEc = customtkinter.CTkEntry(
             self.tabview.tab("Encryption"), placeholder_text="Text") # entry input field field in encryption tab
         self.keyEntryEc = customtkinter.CTkEntry(
             self.tabview.tab("Encryption")) # entry input field for encryption key in encryption tab
         
         self.labelWordsEntryDec = customtkinter.CTkLabel(
-            self.tabview.tab("Decryption"), text = "Words to decrypt", font=("Arial", 14))
+            self.tabview.tab("Decryption"), text = "Words to decrypt", font=("", 13))
         self.labelKeyEntryDec = customtkinter.CTkLabel(
-            self.tabview.tab("Decryption"), text = "Key", font=("Arial", 14))
+            self.tabview.tab("Decryption"), text = "Key", font=("", 13))
         self.wordEntryDec = customtkinter.CTkEntry(
             self.tabview.tab("Decryption"),placeholder_text="Text") # entry input field field in decryption tab
         self.keyEntryDec = customtkinter.CTkEntry(
@@ -50,7 +50,7 @@ class app(customtkinter.CTk):
         self.keyGenOut = customtkinter.CTkEntry(
             self.tabview.tab("Keygen"), state="normal") # output field for encryption key in keygen
         self.keyLabel = customtkinter.CTkLabel(
-            self.tabview.tab("Keygen"), text = "Your generated key")
+            self.tabview.tab("Keygen"), text = "Your generated key", font=("", 13))
         self.goButton = customtkinter.CTkButton(
             self, text = "Encrypt", command=self.buttonPress, state="disabled") # button starting encrypt functions
         
@@ -67,17 +67,17 @@ class app(customtkinter.CTk):
         self.goButton.grid(row = 1, column = 0)
         
         #Individual tabs
-        self.labelWordsEntryEc.grid(row = 0, column = 0, sticky = tkinter.S, pady = 5)
-        self.wordEntryEc.grid(row = 1, column = 0, sticky = tkinter.N, pady = 5)
-        self.labelKeyEntryEc.grid(row = 2, column = 0, sticky = tkinter.S, pady = 5)
-        self.keyEntryEc.grid(row = 3, column = 0, sticky = tkinter.N, pady = 5)
+        self.labelWordsEntryEc.grid(row = 0, column = 0, sticky = tkinter.S, pady = 0)
+        self.wordEntryEc.grid(row = 1, column = 0, sticky = tkinter.N, pady = 0)
+        self.labelKeyEntryEc.grid(row = 2, column = 0, sticky = tkinter.S, pady = 0)
+        self.keyEntryEc.grid(row = 3, column = 0, sticky = tkinter.N, pady = 0)
         
-        self.labelWordsEntryDec.grid(row = 0, column = 0, sticky = tkinter.S, pady = 5)
-        self.wordEntryDec.grid(row = 1, column = 0, sticky = tkinter.N, pady = 5)
-        self.labelKeyEntryDec.grid(row = 2, column = 0, sticky = tkinter.S, pady = 5)
-        self.keyEntryDec.grid(row = 3, column = 0, sticky = tkinter.N, pady = 5)
+        self.labelWordsEntryDec.grid(row = 0, column = 0, sticky = tkinter.S, pady = 0)
+        self.wordEntryDec.grid(row = 1, column = 0, sticky = tkinter.N, pady = 0)
+        self.labelKeyEntryDec.grid(row = 2, column = 0, sticky = tkinter.S, pady = 0)
+        self.keyEntryDec.grid(row = 3, column = 0, sticky = tkinter.N, pady = 0)
         
-        self.keyLabel.grid(row = 0, column = 0, sticky = tkinter.S, pady = 5)
+        self.keyLabel.grid(row = 0, column = 0, sticky = tkinter.S, pady = 0)
         self.keyGenOut.grid(row = 1, column = 0, sticky = tkinter.N)
         
     #Function for dynamic UI

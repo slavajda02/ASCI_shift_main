@@ -8,9 +8,9 @@ class app(customtkinter.CTk):
         self.title("Encryptor")
         
         self.tabview = customtkinter.CTkTabview(self, command = self.tabChange)
-        self.tabview.add("Encryption")  # add tab at the end
-        self.tabview.add("Decryption")  # add tab at the end
-        self.tabview.add("Keygen")  # add tab at the end
+        self.tabview.add("Encryption")  
+        self.tabview.add("Decryption")  
+        self.tabview.add("Keygen")  
         self.tabview.set("Encryption")  # set currently visible tab
         self.geometry("450x350")
         self.eval('tk::PlaceWindow . center')
@@ -28,7 +28,7 @@ class app(customtkinter.CTk):
         self.tabview.tab("Keygen").grid_rowconfigure((0,1) ,weight = 1)
         self.tabview.tab("Keygen").grid_columnconfigure(0 ,weight = 1)
         
-        #Elements declaration
+        # Elements declaration
         self.labelWordsEntryEc = customtkinter.CTkLabel(
             self.tabview.tab("Encryption"), text = "Words to encrypt", font=("", 13))
         self.labelKeyEntryEc = customtkinter.CTkLabel(
@@ -54,19 +54,19 @@ class app(customtkinter.CTk):
         self.goButton = customtkinter.CTkButton(
             self, text = "Encrypt", command=self.buttonPress, state="disabled") # button starting encrypt functions
         
-        #Binding entry field to buttonStateChange
+        # Binding entry field to buttonStateChange
         self.wordEntryEc.bind("<KeyRelease>", self.buttonStateChange)
         self.wordEntryDec.bind("<KeyRelease>", self.buttonStateChange)      
         self.keyEntryEc.bind("<KeyRelease>", self.buttonStateChange)
         self.keyEntryDec.bind("<KeyRelease>", self.buttonStateChange)
         
-        #Elements placement
-        #Main window
+        # Elements placement
+        # Main window
         self.tabview.grid(row = 0, column = 0, padx = 20)
         self.tabview.grid_configure(sticky = "nsew")
         self.goButton.grid(row = 1, column = 0)
         
-        #Individual tabs
+        # Individual tabs
         self.labelWordsEntryEc.grid(row = 0, column = 0, sticky = tkinter.S, pady = 0)
         self.wordEntryEc.grid(row = 1, column = 0, sticky = tkinter.N, pady = 0)
         self.labelKeyEntryEc.grid(row = 2, column = 0, sticky = tkinter.S, pady = 0)
@@ -80,9 +80,8 @@ class app(customtkinter.CTk):
         self.keyLabel.grid(row = 0, column = 0, sticky = tkinter.S, pady = 0)
         self.keyGenOut.grid(row = 1, column = 0, sticky = tkinter.N)
         
-    #Function for dynamic UI
-        
-    #Change button and entry field according to selected tab
+    # Functions for dynamic UI   
+    # Change button and entry field according to selected tab
     def tabChange(self):
         currTab = self.tabview.get()
         
@@ -98,7 +97,7 @@ class app(customtkinter.CTk):
             self.goButton.configure(text = "Generate") 
             self.goButton.configure(state = "enabled")           
             
-    #Chaning buttonState according to entry
+    # Chaning buttonState according to entry
     def buttonStateChange(self, field):
         currTab = self.tabview.get()
         
@@ -113,15 +112,30 @@ class app(customtkinter.CTk):
                 self.goButton.configure(state = "enabled")
             else:
                 self.goButton.configure(state = "disabled")
-        
+    
+    # Functions for calling core functions and outputing their results
     def buttonPress(self):
         currTab = self.tabview.get()
         if currTab == "Encryption":
-            self.wordEntryEc.configure(textvariable = tkinter.StringVar(value = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())))
+            [output, err] = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())
+            if err  == "NKEY_ERROR":
+                tkinter.messagebox.showerror("Error", "Empty key field")
+            elif err == "NINPUT_ERROR":
+                tkinter.messagebox.showerror("Error", "Empty words field")
+            else:
+                self.wordEntryEc.configure(
+                    textvariable = tkinter.StringVar(value = output))
         
         currTab = self.tabview.get()
         if currTab == "Decryption":
-            self.wordEntryDec.configure(textvariable = tkinter.StringVar(value = decrypt(self.wordEntryDec.get(), self.keyEntryDec.get())))
+            [output, err] = decrypt(self.wordEntryDec.get(), self.keyEntryDec.get())
+            if err  == "NKEY_ERROR":
+                tkinter.messagebox.showerror("Error", "Empty key field")
+            elif err == "NINPUT_ERROR":
+                tkinter.messagebox.showerror("Error", "Empty words field")
+            else:
+                self.wordEntryDec.configure(
+                    textvariable = tkinter.StringVar(value = output))
         
         if currTab == "Keygen":
             key = keyGenerator()

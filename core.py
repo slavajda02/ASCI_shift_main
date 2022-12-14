@@ -1,8 +1,12 @@
 import numpy as np
-
+import tkinter
 
 def encrypt(string, key):
     key = keyConvert(key)
+    if key == "WRONG_FORMAT":
+        tkinter.messagebox.showerror("Error", "From key format")
+        return
+    
     asciiL = []
     # convert input string to ascii list
     for x in string:
@@ -56,7 +60,11 @@ def keyGenerator():
     return "".join(key)    
 
 def keyConvert(key):
-    convKey = [key[i:i+2] for i in range(0, len(key), 2)]
-    for x in range(len(convKey)):
-        convKey[x] = int(convKey[x], 16)
+    try:
+        convKey = [key[i:i+2] for i in range(0, len(key), 2)]
+        for x in range(len(convKey)):
+            convKey[x] = int(convKey[x], 16)
+    except ValueError:
+        return "WRONG_FORMAT"
+    
     return convKey

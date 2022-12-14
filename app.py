@@ -95,10 +95,12 @@ class app(customtkinter.CTk):
             #self.wordEntryDec.configure(textvariable = tkinter.StringVar(value = self.wordEntryEc.get()))
         elif currTab == "Keygen":
             self.goButton.configure(text = "Generate") 
-            self.goButton.configure(state = "enabled")           
+            self.goButton.configure(state = "enabled")
+            
+        self.buttonStateChange()           
             
     # Chaning buttonState according to entry
-    def buttonStateChange(self, field):
+    def buttonStateChange(self, properties = None):
         currTab = self.tabview.get()
         
         if currTab == "Encryption":   

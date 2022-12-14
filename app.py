@@ -54,11 +54,16 @@ class app(customtkinter.CTk):
         self.goButton = customtkinter.CTkButton(
             self, text = "Encrypt", command=self.buttonPress, state="disabled") # button starting encrypt functions
         
-        # Binding entry field to buttonStateChange
+        # Binding entry field to buttonStateChange and buttonPress functions
         self.wordEntryEc.bind("<KeyRelease>", self.buttonStateChange)
-        self.wordEntryDec.bind("<KeyRelease>", self.buttonStateChange)      
+        self.wordEntryEc.bind("<Return>", self.buttonPress)
+        self.wordEntryDec.bind("<KeyRelease>", self.buttonStateChange)
+        self.wordEntryDec.bind("<Return>", self.buttonPress)
         self.keyEntryEc.bind("<KeyRelease>", self.buttonStateChange)
+        self.keyEntryEc.bind("<Return>", self.buttonPress)
         self.keyEntryDec.bind("<KeyRelease>", self.buttonStateChange)
+        self.keyEntryDec.bind("<Return>", self.buttonPress)
+        
         
         # Elements placement
         # Main window
@@ -120,7 +125,7 @@ class app(customtkinter.CTk):
         currTab = self.tabview.get()
         if currTab == "Encryption":
             output = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())
-            if output == "WRONG_FORMAT":
+            if output == "WRONG_FORMAT" or output == "TOO_SHORT":
                 self.keyEntryEc.configure(textvariable = tkinter.StringVar(value = ""))
                 return
             self.wordEntryEc.configure(
@@ -129,7 +134,7 @@ class app(customtkinter.CTk):
         currTab = self.tabview.get()
         if currTab == "Decryption":
             output = decrypt(self.wordEntryDec.get(), self.keyEntryDec.get())
-            if output == "WRONG_FORMAT":
+            if output == "WRONG_FORMAT" or output == "TOO_SHORT":
                 self.keyEntryDec.configure(textvariable = tkinter.StringVar(value = ""))
                 return
             self.wordEntryDec.configure(

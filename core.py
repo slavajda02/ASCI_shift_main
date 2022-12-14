@@ -5,7 +5,10 @@ def encrypt(string, key):
     key = keyConvert(key)
     # Error handling
     if key == "WRONG_FORMAT":
-        tkinter.messagebox.showerror("Error", "Wrong key format")
+        tkinter.messagebox.showerror("Error", "Key is in a wrong format!")
+        return key
+    elif key == "TOO_SHORT":
+        tkinter.messagebox.showerror("Error", "Key is not long enoug!")
         return key
     
     asciiL = []
@@ -34,7 +37,10 @@ def decrypt(string, key):
     key = keyConvert(key)
     # Error handling
     if key == "WRONG_FORMAT":
-        tkinter.messagebox.showerror("Error", "Wrong key format")
+        tkinter.messagebox.showerror("Error", "Key is in a wrong format!")
+        return key
+    elif key == "TOO_SHORT":
+        tkinter.messagebox.showerror("Error", "Key is not long enoug!")
         return key
     asciiL = []
     # convert input string to ascii list
@@ -72,4 +78,6 @@ def keyConvert(key):
     except ValueError:
         return "WRONG_FORMAT"
     
+    if len(key) < 8:
+        return "TOO_SHORT"
     return convKey

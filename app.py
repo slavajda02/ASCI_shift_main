@@ -118,12 +118,18 @@ class app(customtkinter.CTk):
         currTab = self.tabview.get()
         if currTab == "Encryption":
             output = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())
+            if output == "WRONG_FORMAT":
+                self.keyEntryEc.configure(textvariable = tkinter.StringVar(value = ""))
+                return
             self.wordEntryEc.configure(
             textvariable = tkinter.StringVar(value = output))
         
         currTab = self.tabview.get()
         if currTab == "Decryption":
             output = decrypt(self.wordEntryDec.get(), self.keyEntryDec.get())
+            if output == "WRONG_FORMAT":
+                self.keyEntryDec.configure(textvariable = tkinter.StringVar(value = ""))
+                return
             self.wordEntryDec.configure(
                 textvariable = tkinter.StringVar(value = output))
         

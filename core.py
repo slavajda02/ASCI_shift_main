@@ -3,9 +3,10 @@ import tkinter
 
 def encrypt(string, key):
     key = keyConvert(key)
+    # Error handling
     if key == "WRONG_FORMAT":
-        tkinter.messagebox.showerror("Error", "From key format")
-        return "", key
+        tkinter.messagebox.showerror("Error", "Wrong key format")
+        return key
     
     asciiL = []
     # convert input string to ascii list
@@ -31,6 +32,10 @@ def encrypt(string, key):
 
 def decrypt(string, key):
     key = keyConvert(key)
+    # Error handling
+    if key == "WRONG_FORMAT":
+        tkinter.messagebox.showerror("Error", "Wrong key format")
+        return key
     asciiL = []
     # convert input string to ascii list
     for x in string:

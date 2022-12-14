@@ -121,7 +121,7 @@ class app(customtkinter.CTk):
                 self.goButton.configure(state = "disabled")
     
     # Functions for calling core functions and outputing their results
-    def buttonPress(self):
+    def buttonPress(self, properties = None):
         currTab = self.tabview.get()
         if currTab == "Encryption":
             output = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())

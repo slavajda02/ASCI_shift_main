@@ -117,25 +117,15 @@ class app(customtkinter.CTk):
     def buttonPress(self):
         currTab = self.tabview.get()
         if currTab == "Encryption":
-            [output, err] = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())
-            if err  == "NKEY_ERROR":
-                tkinter.messagebox.showerror("Error", "Empty key field")
-            elif err == "NINPUT_ERROR":
-                tkinter.messagebox.showerror("Error", "Empty words field")
-            else:
-                self.wordEntryEc.configure(
-                    textvariable = tkinter.StringVar(value = output))
+            output = encrypt(self.wordEntryEc.get(), self.keyEntryEc.get())
+            self.wordEntryEc.configure(
+            textvariable = tkinter.StringVar(value = output))
         
         currTab = self.tabview.get()
         if currTab == "Decryption":
-            [output, err] = decrypt(self.wordEntryDec.get(), self.keyEntryDec.get())
-            if err  == "NKEY_ERROR":
-                tkinter.messagebox.showerror("Error", "Empty key field")
-            elif err == "NINPUT_ERROR":
-                tkinter.messagebox.showerror("Error", "Empty words field")
-            else:
-                self.wordEntryDec.configure(
-                    textvariable = tkinter.StringVar(value = output))
+            output = decrypt(self.wordEntryDec.get(), self.keyEntryDec.get())
+            self.wordEntryDec.configure(
+                textvariable = tkinter.StringVar(value = output))
         
         if currTab == "Keygen":
             key = keyGenerator()

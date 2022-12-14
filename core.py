@@ -5,7 +5,7 @@ def encrypt(string, key):
     key = keyConvert(key)
     if key == "WRONG_FORMAT":
         tkinter.messagebox.showerror("Error", "From key format")
-        return
+        return "", key
     
     asciiL = []
     # convert input string to ascii list
